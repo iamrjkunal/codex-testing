@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WealthWise - Money Management Platform</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <h1>WealthWise</h1>
+    <div id="userProfile" class="user-profile hidden">
+      <img id="userAvatar" alt="User avatar" />
+      <span id="userName"></span>
+      <button id="signOutBtn" class="secondary-btn">Sign out</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="authSection" class="card auth-card">
+      <h2>Sign in to manage your finances</h2>
+      <p>Use your Google account to access a personal finance dashboard, track expenses, and plan budgets.</p>
+      <div id="googleSignIn"></div>
+      <p class="note">
+        Replace <code>GOOGLE_CLIENT_ID</code> in <code>app.js</code> with your OAuth client ID to enable Google sign-in.
+      </p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="grid">
+        <section class="card summary-card">
+          <h2>Account Summary</h2>
+          <div class="summary">
+            <div>
+              <h3>Total Balance</h3>
+              <p id="totalBalance" class="amount balance">$0.00</p>
+            </div>
+            <div>
+              <h3>Total Income</h3>
+              <p id="totalIncome" class="amount income">$0.00</p>
+            </div>
+            <div>
+              <h3>Total Expenses</h3>
+              <p id="totalExpenses" class="amount expense">$0.00</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Add Transaction</h2>
+          <form id="transactionForm">
+            <label for="transactionType">Type</label>
+            <select id="transactionType" required>
+              <option value="income">Income</option>
+              <option value="expense">Expense</option>
+            </select>
+
+            <label for="transactionCategory">Category</label>
+            <input type="text" id="transactionCategory" placeholder="e.g. Salary, Groceries" required />
+
+            <label for="transactionAmount">Amount</label>
+            <input type="number" id="transactionAmount" min="0" step="0.01" required />
+
+            <label for="transactionNotes">Notes</label>
+            <textarea id="transactionNotes" rows="2" placeholder="Optional details"></textarea>
+
+            <button type="submit" class="primary-btn">Save Transaction</button>
+          </form>
+        </section>
+
+        <section class="card">
+          <h2>Budget Health</h2>
+          <div id="budgetOverview" class="budget-overview">
+            <p>Log a few transactions to see how your spending aligns with your goals.</p>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Recent Transactions</h2>
+          <ul id="transactionList" class="transaction-list">
+            <li class="empty">No transactions yet.</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>WealthWise helps you stay in control of your finances with guided budgeting and smart insights.</p>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
